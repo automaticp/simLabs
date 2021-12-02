@@ -34,7 +34,7 @@ public:
 };
 
 
-class Geant5 {
+class Simulation {
 public: 
 	using energy_t = double;
 	using length_t = double;
@@ -48,11 +48,11 @@ private:
 	GaussianDistribution gaussDist_;
 
 public:
-	Geant5(const energy_t initialEnergy = 8.0 * units::eMass, length_t zMax = 3.0 * units::cm)
+	Simulation(const energy_t initialEnergy = 8.0 * units::eMass, length_t zMax = 3.0 * units::cm)
 		: initialEnergy_{ initialEnergy }, zMax_{ zMax } {}
 
 	// single run that returns total dE with PMT resolution correction
-	Geant5::energy_t run();
+	Simulation::energy_t run();
 
 private:
 	energy_t tracePhoton(Photon photon);
@@ -78,7 +78,7 @@ private:
 };
 
 
-Geant5::energy_t Geant5::run() {
+Simulation::energy_t Simulation::run() {
 
 	energy_t dE{ tracePhoton({true, true, initialEnergy_, 0.0}) };
 	
@@ -91,7 +91,7 @@ Geant5::energy_t Geant5::run() {
 }
 
 
-Geant5::energy_t Geant5::tracePhoton(Photon photon) {
+Simulation::energy_t Simulation::tracePhoton(Photon photon) {
 	energy_t dE{ 0.0 };
 	
 	// this is ugly af, but i'd rather already get it working
@@ -144,13 +144,13 @@ Geant5::energy_t Geant5::tracePhoton(Photon photon) {
 }
 
 
-Geant5::energy_t Geant5::interactPhotoEffect(Photon& photon) {
+Simulation::energy_t Simulation::interactPhotoEffect(Photon& photon) {
 	photon.isAlive_ = false;
 	return photon.energy_;
 }
 
 
-Geant5::energy_t Geant5::interactComptonEffect(Photon& photon) {
+Simulation::energy_t Simulation::interactComptonEffect(Photon& photon) {
 	comptonDist_.setE(photon.energy_);
 	energy_t dE{ photon.energy_ - comptonDist_.getValue() };
 	photon.energy_ -= dE;
@@ -158,7 +158,7 @@ Geant5::energy_t Geant5::interactComptonEffect(Photon& photon) {
 }
 
 
-Geant5::energy_t Geant5::interactPairProduction(Photon& photon) {
+Simulation::energy_t Simulation::interactPairProduction(Photon& photon) {
 	// original photon loses 2*eMass; electron and positron carry (E - 2) kinetic energy
 	// and lose it all. dE = E - 2.
 	energy_t dE{ photon.energy_ - 2.0 * units::eMass };

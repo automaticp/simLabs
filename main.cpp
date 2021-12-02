@@ -6,7 +6,7 @@
 #include "GaussianDistribution.h"
 #include "ComptonDistribution.h"
 #include "Histogram.h"
-#include "Geant5.h"
+#include "Simulation.h"
 
 
 std::vector<double> poorRange(double a, double b, double step = 1.0) {
@@ -33,15 +33,15 @@ void drawDistribution(DistributionInterface<T>& dist,
 }
 
 
-void drawGeantRunDistribution(Geant5& g5,
-							  const std::vector<double>& binEdges,
-							  size_t sampleSize, bool normalized = false) {
+void drawSimRunDistribution(Simulation& sim,
+							const std::vector<double>& binEdges,
+							size_t sampleSize, bool normalized = false) {
 	assert(!binEdges.empty());
 	Histogram<double> hist;
 	hist.setBinEdges(binEdges);
 	hist.reserve(sampleSize);
 	for ( size_t i{0}; i < sampleSize; ++i ) {
-		hist.fill(g5.run());
+		hist.fill(sim.run());
 	}
 	hist.computeAndDraw(normalized);
 }
@@ -63,8 +63,8 @@ int main() {
 	ComptonDistribution dist4(3.5);
 	drawDistribution(dist4, poorRange(0.0, 4.0, 0.1), defSample);
 
-	Geant5 g5(8.0 * units::eMass, 3.0 * units::cm);
-	drawGeantRunDistribution(g5, poorRange(-0.1, 8.9, 0.2), defSample);
+	Simulation sim(8.0 * units::eMass, 3.0 * units::cm);
+	drawSimRunDistribution(sim, poorRange(-0.1, 8.9, 0.2), defSample);
 
 
 	return 0;

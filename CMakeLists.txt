@@ -7,6 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_subdirectory(distribution)
 
-add_executable(simLabs "main.cpp" "Histogram.h" "Geant5.h")
+add_executable(simLabs "main.cpp" "Histogram.h" "Simulation.h")
 
 target_link_libraries(simLabs PRIVATE distribution)
