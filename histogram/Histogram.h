@@ -18,7 +18,7 @@ private:
 public:
 	Histogram() {}
 
-	Histogram(const std::vector<T>& data, const std::vector<double> binEdges) 
+	Histogram(const std::vector<T>& data, const std::vector<double>& binEdges) 
 		: data_{ data }, binEdges_{ binEdges } {}
 
 	void setData(const std::vector<T>& data) { data_ = data; }
