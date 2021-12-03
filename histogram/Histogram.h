@@ -29,12 +29,7 @@ public:
 	void reserve(size_t size) { data_.reserve(size);}
 	void fill(T entry) { data_.push_back(entry); }
 
-	void fillFromDistribution(DistributionInterface<T>& dist, size_t sampleSize) {
-		reserve(sampleSize);
-		for ( size_t i{ 0 }; i < sampleSize; ++i ) {
-			fill(dist.getValue());
-		}
-	}
+	void fillFromDistribution(DistributionInterface<T>& dist, size_t sampleSize);
 
 	void compute();
 
@@ -51,6 +46,16 @@ public:
 	}
 
 };
+
+
+template <typename T>
+void Histogram<T>::fillFromDistribution(DistributionInterface<T>& dist, 
+									 size_t sampleSize) {
+	reserve(sampleSize);
+	for ( size_t i{ 0 }; i < sampleSize; ++i ) {
+		fill(dist.getValue());
+	}
+}
 
 
 template <typename T>
