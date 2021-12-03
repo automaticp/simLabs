@@ -5,7 +5,20 @@
 #include <cmath>
 #include <iostream>
 #include <iomanip>
-#include "DistributionInterface.h"
+#ifdef  USE_DISTRIBUTION
+#	include "DistributionInterface.h"
+#endif//USE_DISTRIBUTION
+
+// Usage:
+//
+// #define HISTOGRAM_IMPLEMENTATION
+// #include "Histogram.h"
+// 
+// in one of the .cpp files
+// 
+// #include "Histogram.h"
+// 
+// everywhere else
 
 template <typename T>
 class Histogram {
@@ -28,9 +41,9 @@ public:
 
 	void reserve(size_t size) { data_.reserve(size);}
 	void fill(T entry) { data_.push_back(entry); }
-
+#ifdef  USE_DISTRIBUTION
 	void fillFromDistribution(DistributionInterface<T>& dist, size_t sampleSize);
-
+#endif//USE_DISTRIBUTION
 	void compute();
 
 	const std::vector<size_t>& getCounts() const { return counts_; }
@@ -48,6 +61,9 @@ public:
 };
 
 
+#ifdef  HISTOGRAM_IMPLEMENTATION
+
+#ifdef  USE_DISTRIBUTION
 template <typename T>
 void Histogram<T>::fillFromDistribution(DistributionInterface<T>& dist, 
 									 size_t sampleSize) {
@@ -56,6 +72,7 @@ void Histogram<T>::fillFromDistribution(DistributionInterface<T>& dist,
 		fill(dist.getValue());
 	}
 }
+#endif//USE_DISTRIBUTION
 
 
 template <typename T>
@@ -112,3 +129,5 @@ void Histogram<T>::draw(bool normalize) {
 	}
 
 }
+
+#endif//HISTOGRAM_IMPLEMENTATION
