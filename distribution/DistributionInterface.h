@@ -15,16 +15,6 @@ public:
 };
 
 
-inline GammaGenerator::GammaGenerator() {
-	generator_ = std::make_unique<std::mt19937_64>();
-}
-
-inline double GammaGenerator::getGamma() {
-	return gamma_(*generator_);
-}
-
-
-
 template <typename T>
 class DistributionInterface : protected GammaGenerator {
 public:
