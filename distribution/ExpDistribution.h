@@ -8,14 +8,22 @@ public:
 	double mu_;
 
 public:
-	ExpDistribution(double mu = 1.0) : mu_{ mu } {}
+	ExpDistribution(double mu = 1.0);
 
-	virtual double getValue() override {
-		return -std::log(getGamma()) / mu_;
-	}
+	virtual double getValue() override;
 
-	double getValue(double mu) {
-		return -std::log(getGamma()) / mu;
-	}
-
+	double getValue(double mu);
+	
 };
+
+
+inline ExpDistribution::ExpDistribution(double mu) 
+	: mu_{ mu } {}
+
+inline double ExpDistribution::getValue() {
+	return -std::log(getGamma()) / mu_;
+}
+
+inline double ExpDistribution::getValue(double mu) {
+	return -std::log(getGamma()) / mu;
+}
