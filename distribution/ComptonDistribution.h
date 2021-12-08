@@ -1,6 +1,7 @@
 #pragma once
 #include "DistributionInterface.h"
 
+
 class ComptonDistribution : public DistributionInterface<double> {
 private:
 	double E_;
@@ -9,31 +10,15 @@ private:
 
 public:
 	// compute and set the normalization coeff here also
-	ComptonDistribution(double E = 3.5) 
-		: E_{ E }, minX_{ E / (1 + 2 * E) }, maxEta_{g(minX_)} {}
+	ComptonDistribution(double E = 3.5);
 
-	virtual double getValue() override {
-		double xi{}, eta{};
-		do {
-			// xi could be incorrect
-			xi = getGamma() * (E_ - minX_) + minX_;
-			// eta as well
-			eta = getGamma() * maxEta_;
-		} while ( eta >= g(xi) );
-		
-		return xi;
-	}
+	virtual double getValue() override;
 
-	
-	void setE(const double E) {
-		E_ = E;
-		minX_ = E / (1 + 2 * E);
-		maxEta_ = g(minX_);
-	}
+	void setE(const double E);
 
 private:
-	double g(double x) {
-		return x / E_ + E_ / x + (1 / E_ - 1 / x) * (2 + 1 / E_ - 1 / x);
-	}
+	double g(double x);
 
 };
+
+

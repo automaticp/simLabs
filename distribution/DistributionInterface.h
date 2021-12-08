@@ -8,14 +8,10 @@ private:
 	std::uniform_real_distribution<double> gamma_{ 0.0, 1.0 };
 
 public:
-	GammaGenerator() {
-		generator_ = std::make_unique<std::mt19937_64>();
-	}
+	GammaGenerator();
 
-	double getGamma() {
-		return gamma_(*generator_);
-	}
-
+	double getGamma();
+	
 };
 
 
