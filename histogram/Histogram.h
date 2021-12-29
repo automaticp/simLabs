@@ -9,16 +9,6 @@
 #	include "DistributionInterface.h"
 #endif//USE_DISTRIBUTION
 
-// Usage:
-//
-// #define HISTOGRAM_IMPLEMENTATION
-// #include "Histogram.h"
-// 
-// in one of the .cpp files
-// 
-// #include "Histogram.h"
-// 
-// everywhere else
 
 template <typename T>
 class Histogram {
@@ -61,11 +51,11 @@ public:
 };
 
 
-#ifdef  HISTOGRAM_IMPLEMENTATION
+
 
 #ifdef  USE_DISTRIBUTION
 template <typename T>
-void Histogram<T>::fillFromDistribution(DistributionInterface<T>& dist, 
+inline void Histogram<T>::fillFromDistribution(DistributionInterface<T>& dist, 
 									 size_t sampleSize) {
 	reserve(sampleSize);
 	for ( size_t i{ 0 }; i < sampleSize; ++i ) {
@@ -76,7 +66,7 @@ void Histogram<T>::fillFromDistribution(DistributionInterface<T>& dist,
 
 
 template <typename T>
-void Histogram<T>::compute() {
+inline void Histogram<T>::compute() {
 	assert(binEdges_.size() > 0);
 
 	counts_.resize((binEdges_.size() - 1), 0);
@@ -93,7 +83,7 @@ void Histogram<T>::compute() {
 
 
 template <typename T>
-void Histogram<T>::draw(bool normalize) {
+inline void Histogram<T>::draw(bool normalize) {
 	// it's a mess, sorry
 	constexpr char fillChar{ '#' };
 	constexpr size_t valueHeight{ 18 };
@@ -130,4 +120,3 @@ void Histogram<T>::draw(bool normalize) {
 
 }
 
-#endif//HISTOGRAM_IMPLEMENTATION
