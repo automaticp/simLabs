@@ -5,8 +5,7 @@
 #include "ExpSuperpositionDistribution.h"
 #include "GaussianDistribution.h"
 #include "ComptonDistribution.h"
-#define  HISTOGRAM_IMPLEMENTATION
-#include "Histogram.h"
+#include "Histogram.hpp"
 #include "Simulation.h"
 
 
