@@ -15,7 +15,7 @@ private:
 public:
 	DiscreteDistribution(const table_t& table);
 
-	virtual T getValue() override;
+	virtual T getValue() const override;
 
 };
 
@@ -24,5 +24,4 @@ public:
 #include "DiscreteDistribution.inl"
 	
 
-	
 	

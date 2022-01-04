@@ -5,7 +5,7 @@ ComptonDistribution::ComptonDistribution(double E)
 	: E_{ E }, minX_{ E / (1 + 2 * E) }, maxEta_{g(minX_)} {}
 
 
-double ComptonDistribution::getValue() {
+double ComptonDistribution::getValue() const {
 	double xi{}, eta{};
 	do {
 		// xi could be incorrect
@@ -25,7 +25,7 @@ void ComptonDistribution::setE(const double E) {
 }
 
 
-double ComptonDistribution::g(double x) {
+double ComptonDistribution::g(double x) const {
 	return x / E_ + E_ / x + (1 / E_ - 1 / x) * (2 + 1 / E_ - 1 / x);
 }
 

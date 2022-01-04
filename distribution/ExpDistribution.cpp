@@ -4,7 +4,7 @@
 ExpDistribution::ExpDistribution(double mu) 
 	: mu_{ mu } {}
 
-double ExpDistribution::getValue() {
+double ExpDistribution::getValue() const {
 	return -std::log(getGamma()) / mu_;
 }
 

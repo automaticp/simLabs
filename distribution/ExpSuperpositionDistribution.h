@@ -13,7 +13,7 @@ private:
 public:
 	ExpSuperpositionDistribution(const std::vector<double>& coefficients, const std::vector<int> mus);
 
-	virtual double getValue() override;
+	virtual double getValue() const override;
 
 };
 

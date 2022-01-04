@@ -12,7 +12,7 @@ ExpSuperpositionDistribution::ExpSuperpositionDistribution(const std::vector<dou
 }
 
 
-double ExpSuperpositionDistribution::getValue() {
+double ExpSuperpositionDistribution::getValue() const {
 	double gamma{ getGamma() };
 
 	double accumulator{ 0.0 };

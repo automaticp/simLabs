@@ -10,7 +10,7 @@ private:
 public:
 	GammaGenerator();
 
-	double getGamma();
+	double getGamma() const;
 	
 };
 
@@ -18,6 +18,6 @@ public:
 template <typename T>
 class DistributionInterface : protected GammaGenerator {
 public:
-	virtual T getValue() = 0;
+	virtual T getValue() const = 0;
 
 };

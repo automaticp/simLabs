@@ -32,7 +32,7 @@ public:
 	void reserve(size_t size) { data_.reserve(size);}
 	void fill(T entry) { data_.push_back(entry); }
 #ifdef  USE_DISTRIBUTION
-	void fillFromDistribution(DistributionInterface<T>& dist, size_t sampleSize);
+	void fillFromDistribution(const DistributionInterface<T>& dist, size_t sampleSize);
 #endif//USE_DISTRIBUTION
 	void compute();
 
@@ -55,7 +55,7 @@ public:
 
 #ifdef  USE_DISTRIBUTION
 template <typename T>
-inline void Histogram<T>::fillFromDistribution(DistributionInterface<T>& dist, 
+inline void Histogram<T>::fillFromDistribution(const DistributionInterface<T>& dist,
 									 size_t sampleSize) {
 	reserve(sampleSize);
 	for ( size_t i{ 0 }; i < sampleSize; ++i ) {

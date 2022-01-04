@@ -11,7 +11,7 @@ public:
 
 
 public:
-	virtual double getValue() override;
+	virtual double getValue() const override;
 
 };
 

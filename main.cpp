@@ -22,7 +22,7 @@ std::vector<double> poorRange(double a, double b, double step = 1.0) {
 
 
 template <typename T>
-void drawDistribution(DistributionInterface<T>& dist, 
+void drawDistribution(const DistributionInterface<T>& dist,
 					  const std::vector<double>& binEdges, 
 					  size_t sampleSize, bool normalized = false) {
 	assert(!binEdges.empty());

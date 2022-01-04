@@ -7,7 +7,7 @@ inline DiscreteDistribution<T>::DiscreteDistribution(const table_t& table)
 	
 
 template <typename T>
-inline T DiscreteDistribution<T>::getValue() {
+inline T DiscreteDistribution<T>::getValue() const {
 	// why do I need to access getGamma() through 'this'???
 	double gamma{ this->getGamma() };
 	double accumulator{ 0.0 };

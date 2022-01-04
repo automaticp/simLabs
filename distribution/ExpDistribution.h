@@ -10,7 +10,7 @@ public:
 public:
 	ExpDistribution(double mu = 1.0);
 
-	virtual double getValue() override;
+	virtual double getValue() const override;
 
 	double getValue(double mu);
 	

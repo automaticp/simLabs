@@ -12,12 +12,12 @@ public:
 	// compute and set the normalization coeff here also
 	ComptonDistribution(double E = 3.5);
 
-	virtual double getValue() override;
+	virtual double getValue() const override;
 
 	void setE(const double E);
 
 private:
-	double g(double x);
+	double g(double x) const;
 
 };
 

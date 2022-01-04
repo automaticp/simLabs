@@ -5,7 +5,7 @@ GaussianDistribution::GaussianDistribution(double mu, double sigma)
 	: mu_{ mu }, sigma_{ sigma } {}
 
 
-double GaussianDistribution::getValue(){
+double GaussianDistribution::getValue() const {
 	double gamma1{ getGamma() };
 	double gamma2{ getGamma() };
 	// kek, I don't remember where PI is in the STL
